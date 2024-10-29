@@ -4,14 +4,16 @@ using namespace std;
 int factorial(int n);
 struct Cuenta
 {
+    /**Estructura para la cuenta del usuario */
     double efectivo = 20000;
 } cuenta1;
 
-void consultar_cuenta(const Cuenta &cuenta); // Consulta el saldo de la cuenta
-void retirar_efectivo(Cuenta &cuenta);       // Retira efectivo de la cuenta
+void consultar_cuenta(const Cuenta &cuenta);
+void retirar_efectivo(Cuenta &cuenta);
 
 int main()
 {
+    /**Despliega un menu de dos opciones que son calcular un factorial y hacer calculos en una cuenta bancaria */
     int opc = 1;
     int opc_banco = 1;
     int numero;
@@ -76,6 +78,7 @@ int main()
 
 int factorial(int n)
 {
+    /**Recibe un numero y calcula su factorial */
     if (n <= 1)
     {
         return 1;
@@ -88,12 +91,14 @@ int factorial(int n)
 
 void consultar_cuenta(const Cuenta &cuenta)
 {
+    /**Imprime el estado actual de la cuenta */
     cout << endl
          << "Saldo de la cuenta: " << cuenta.efectivo << endl;
 }
 
 void retirar_efectivo(Cuenta &cuenta)
 {
+    /**Pide un monto a retirar y actualiza la cuenta en base a ello */
     double retiro;
     cout << endl
          << "Ingrese el monto a retirar: ";
