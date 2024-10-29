@@ -1,3 +1,9 @@
+/**
+ * Titulo: Examen Parcial 3
+ * Autor: Santiago Mendivil Alvarez
+ * Matricula: 226129
+ */
+
 #include <iostream>
 using namespace std;
 
