@@ -1,6 +1,79 @@
 #include <iostream>
 using namespace std;
 
+int factorial(int n);
+struct Cuenta
+{
+    double efectivo = 20000;
+} cuenta1;
+
+void consultar_cuenta(const Cuenta &cuenta); // Consulta el saldo de la cuenta
+void retirar_efectivo(Cuenta &cuenta);       // Retira efectivo de la cuenta
+
+int main()
+{
+    int opc = 1;
+    int opc_banco = 1;
+    int numero;
+
+    do
+    {
+        cout << endl
+             << "Ingrese la opcion a realizar" << endl
+             << "1. Calcular el factorial de un numero" << endl
+             << "2. Ingresar a la cuenta bancaria" << endl
+             << "0. Salir" << endl
+             << "Opcion: ";
+        cin >> opc;
+
+        if (opc == 1)
+        {
+            cout << "Introduce un numero para calcular su factorial: ";
+            cin >> numero;
+            cout << "El factorial de " << numero << " es " << factorial(numero) << endl;
+            system("pause");
+        }
+        else if (opc == 2)
+        {
+            do
+            {
+                cout << endl
+                     << "Seleccione una opcion" << endl
+                     << "1. Consultar efectivo" << endl
+                     << "2. Retirar efectivo" << endl
+                     << "0. Salir" << endl
+                     << "Opcion: ";
+                cin >> opc_banco;
+
+                if (opc_banco == 1)
+                {
+                    consultar_cuenta(cuenta1);
+                }
+                else if (opc_banco == 2)
+                {
+                    retirar_efectivo(cuenta1);
+                }
+                else if (opc_banco == 0)
+                {
+                    cout << endl
+                         << "Saliendo del banco..." << endl;
+                    system("pause");
+                }
+            } while (opc_banco != 0);
+        }
+        else if (opc == 0)
+        {
+            cout << endl
+                 << "Saliendo del programa" << endl;
+        }
+    } while (opc != 0);
+
+    cout << endl
+         << "Presione enter para terminar" << endl;
+    system("pause");
+    return 0;
+}
+
 int factorial(int n)
 {
     if (n <= 1)
@@ -13,14 +86,25 @@ int factorial(int n)
     }
 }
 
-int main()
+void consultar_cuenta(const Cuenta &cuenta)
 {
-    int numero;
+    cout << endl
+         << "Saldo de la cuenta: " << cuenta.efectivo << endl;
+}
 
-    cout << "Introduce un número para calcular su factorial: ";
-    cin >> numero;
-
-    cout << "El factorial de " << numero << " es " << factorial(numero) << endl;
-
-    return 0;
+void retirar_efectivo(Cuenta &cuenta)
+{
+    double retiro;
+    cout << endl
+         << "Ingrese el monto a retirar: ";
+    cin >> retiro;
+    while (retiro == 0 || retiro > cuenta.efectivo)
+    {
+        cout << endl
+             << "Ingrese un monto adecuado: ";
+        cin >> retiro;
+    }
+    cuenta.efectivo -= retiro;
+    cout << endl
+         << "Saldo de la cuenta: " << cuenta.efectivo << endl;
 }
